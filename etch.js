@@ -1,19 +1,61 @@
-window.addEventListener('load', function() {
-  size();
-});
+function createGrid (rws)
+{
 
-function size() {
-  var container = document.getElementById('container');
-  container.innerHTML = '';//don't want any extra boxes when you call this function again
-  var x = 16;//width of boxes that can fit; remove any decimal places
-  var y = 16;//height of boxes that can fit; remove any decimal places
-  for (var i = 0; i < 256; i++) {//multiply x*y to get total area of boxes that can fit
-    var box = document.createElement('div');//create a div
-    box.className = 'box';//assign class
-    container.appendChild(box);//append
+  let max = rws;
+
+  var container = document.getElementById("container");
+  while(container.firstChild)
+  {
+  	container.firstChild.remove();
   }
+
+  container.style.display = "grid";
+  container.style.gridGap = "3px";
+  
+  container.style.width = "500px";
+  container.style.height = "500px"; 
+
+  
+  for(let x = 1; x <= max; x++)
+  {
+  	for(let y = 1; y <=max; y++)
+  	{
+  		var box = document.createElement('div');
+  		box.style.gridColumnStart=x;
+  		box.style.gridColumndEnd=x+1;
+  		box.style.gridRowStart=y;
+  		box.style.gridRowEnd=y+1;
+  		box.style.borderStyle="solid";
+  		box.style.borderColor="black";
+  		box.style.borderWidth="1px";
+  		container.appendChild(box);
+  	}
+  }
+  let boxes=container.childNodes;
+  for(let i = 0; i < boxes.length; i++)
+  {
+  	boxes[i].addEventListener('mouseover', hovered);
+  }
+
+
+  
+
 }
 
-window.addEventListener('resize', function() {
-  size();//call the function again when the window is resized
-});
+
+function myFunction () {
+	let inp = document.getElementById('rws').value;
+	createGrid(inp);
+
+}
+
+function hovered()
+{
+		this.style.backgroundColor="black";
+	
+
+}
+
+
+
+
