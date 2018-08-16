@@ -1,11 +1,6 @@
 .click {
 	background-color: black;
 }
-.square {
-	
-    --opacity: 0;
-    opacity: var(--opacity);
 
-}
 
 
